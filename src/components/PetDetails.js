@@ -8,6 +8,10 @@ import './PetDetails.css';
 
 const PetDetails = (props) => {
   const { name, location, about, species, images } = props.currentPet;
+  // const name = props.currentPet.name
+  // it is saying to grab the keys in the object and assign them the variable name (must be same name as key)
+  // variables are inside the current pet object
+  console.log(props.currentPet)
   return (
     <section className="pet-details">
       <section className="pet-details--header">

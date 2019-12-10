@@ -8,7 +8,19 @@ import speciesEmoji from '../speciesEmoji';
 
 
 const PetCard = (props) => {
-  const { id, name, species, about, location } = props;
+  const { id, name, species, about, location} = props;
+  
+
+  const onSelectClick = (event) => {
+    // This needs to change current pet
+
+    props.setcurrentPet()
+  }
+
+  const onDeleteClick = () => {
+    props.delete(id)
+  }
+
   return (
     <div className="card pet-card">
 
@@ -17,6 +29,7 @@ const PetCard = (props) => {
         {speciesEmoji(species)} {id} - {name}
         <button
           className="btn btn-primary pet-card--select-pet-btn"
+          onClick={onSelectClick}
         >
           Select
         </button>
@@ -24,6 +37,7 @@ const PetCard = (props) => {
           type="button"
           className="btn btn-danger pet-card--remove-btn"
           aria-label="Remove"
+          onClick={onDeleteClick}
         >
           Remove
         </button>

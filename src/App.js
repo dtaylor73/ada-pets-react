@@ -10,8 +10,9 @@ import './App.css';
 
 import { pets } from './data/pets.json';
 // const pets = importData.pets;
+// I don't understand this syntax. Is this destructing?
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,12 +22,16 @@ class App extends Component {
     };
     console.log(pets);
   }
-
-
-
-
+  
   render () {
     const { currentPet } = this.state;
+
+    const setCurrentPet = (pet) => {
+      // event could be anything
+      this.setState({
+        currentPet: pet
+      })
+    }
 
     return (
       <main className="App">
@@ -37,12 +42,15 @@ class App extends Component {
           { /* Wave 4:  Place to add the SearchBar component */}
           <SearchBar />
         </section>
-        { /* Wave 1:  Where Pet Details should appear */}
+        {currentPet ? <PetDetails currentPet={currentPet}/> : null }
         <section className="pet-list-wrapper">
-          { /* Wave 1:  Where PetList should appear */}
+          <PetList pets={this.state.petList}
+          setCurrentPet={setCurrentPet}
+          // setCurrentPet isn't defined as an instance of the class. It's just a variable. 
+          />
         </section>
         <section className="new-pet-form-wrapper">
-          { /* Wave 3:  Where NewPetForm should appear */}
+          {<NewPetForm/>}
         </section>
       </main>
     );
@@ -50,3 +58,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+// 
